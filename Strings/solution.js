@@ -61,6 +61,7 @@ console.log("-------------------------------------");
 // checkSpam("Buy ViAgRA now", ["viagra", "free"]) => true
 // checkSpam("Get free access", ["viagra", "free"]) => true
 // checkSpam("Hello my friend", ["viagra", "free"]) => false
+console.log("Task #4");
 
 // function checkSpam(text, keywords) {
 //   return keywords.some((word) =>
@@ -80,3 +81,22 @@ function checkSpam(text, keywords) {
 console.log(checkSpam("Buy ViAgRA now", ["viagra", "free"]));
 console.log(checkSpam("Get free access", ["viagra", "free"]));
 console.log(checkSpam("Hello my friend", ["viagra", "free"]));
+console.log("-------------------------------------");
+
+// Task #5
+// reverseWords("JavaScript is fun") => "fun is JavaScript"
+// reverseWords("  Hello   World  ") => "World Hello"
+console.log("Task #5");
+
+function reverseWords(str) {
+  const trimmedStr = function (s) {
+    const regExp = /\s+/g;
+    return s.replace(regExp, " ").trim();
+  };
+
+  return trimmedStr(str).split(" ").reverse().join(" ");
+}
+
+console.log(reverseWords("JavaScript is fun"));
+console.log(reverseWords("  Hello   World  "));
+console.log("-------------------------------------");
