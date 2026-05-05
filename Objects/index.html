@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Sandbox</h1>
+    <textarea id="code-area"></textarea>
+    <button id="run-btn">Run Code</button>
+    <h2>Output</h2>
+    <div id="log-container"></div>
+
+    <script>
+      (function () {
+        const codeArea = document.getElementById("code-area");
+        const runButton = document.getElementById("run-btn");
+        const logContainer = document.getElementById("log-container");
+
+        const originalConsoleLog = console.log;
+        console.log = function (...args) {
+          originalConsoleLog.apply(console, args);
+          args.forEach((arg) => {
+            const logElement = document.createElement("div");
+            logElement.textContent =
+              typeof arg === "object" ? JSON.stringify(arg, null, 2) : arg;
+            logContainer.appendChild(logElement);
+          });
+        };
+
+        function clearLogs() {
+          logContainer.innerHTML = "";
+        }
+
+        runButton.addEventListener("click", () => {
+          const userCode = codeArea.value;
+          clearLogs();
+          try {
+            new Function(userCode)();
+          } catch (error) {
+            console.log("Error:", error.message);
+          }
+        });
+      })();
+    </script>
+    <script src="solution.js"></script>
+  </body>
+</html>
